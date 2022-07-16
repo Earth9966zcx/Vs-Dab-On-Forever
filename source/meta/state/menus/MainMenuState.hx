@@ -75,7 +75,7 @@ class MainMenuState extends MusicBeatState
 		magenta.color = 0xFFfd719b;
 		add(magenta);
 		
-		blackThing = new FlxSprite(-85).loadGraphic(Paths.image('menus/base/menuDesat'));
+		blackThing = new FlxSprite(-85).loadGraphic(Paths.image('menus/base/blackLmao'));
 		blackThing.screenCenter();
 		blackThing.visible = false;
 		blackThing.antialiasing = true;
