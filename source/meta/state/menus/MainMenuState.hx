@@ -13,6 +13,7 @@ import flixel.tweens.FlxTween;
 import flixel.util.FlxColor;
 import meta.MusicBeat.MusicBeatState;
 import meta.data.dependency.Discord;
+import flixel.addons.display.FlxBackdrop;
 
 using StringTools;
 
@@ -27,6 +28,7 @@ class MainMenuState extends MusicBeatState
 
 	var bg:FlxSprite; // the background has been separated for more control
 	var magenta:FlxSprite;
+	var blackThing:FlxSprite;
 	var camFollow:FlxObject;
 
 	var optionShit:Array<String> = ['story mode', 'freeplay', 'options'];
@@ -72,6 +74,12 @@ class MainMenuState extends MusicBeatState
 		magenta.antialiasing = true;
 		magenta.color = 0xFFfd719b;
 		add(magenta);
+		
+		blackThing = new FlxSprite(-85).loadGraphic(Paths.image('menus/base/menuDesat'));
+		blackThing.screenCenter();
+		blackThing.visible = false;
+		blackThing.antialiasing = true;
+		add(blackThing);
 
 		// add the camera
 		camFollow = new FlxObject(0, 0, 1, 1);
@@ -99,7 +107,9 @@ class MainMenuState extends MusicBeatState
 			// menuItem.alpha = 0;
 
 			// placements
-			menuItem.screenCenter(X);
+			//menuItem.screenCenter(X);
+			menuItem.x = 700;
+			menuItem.angle = 7;
 			// if the id is divisible by 2
 			if (menuItem.ID % 2 == 0)
 				menuItem.x += 1000;
