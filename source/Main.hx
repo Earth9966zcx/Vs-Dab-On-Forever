@@ -95,10 +95,10 @@ class Main extends Sprite
 			"hating simulator ft. moawling"
 		],
 		[
-			['glow'],
+			['Encounter', 'Glow', 'Jigokunokishi'],
 			['dab'],
-			[FlxColor.fromRGB(206, 106, 169)],
-			"testing!!!"
+			[FlxColor.fromRGB(255, 0, 0)],
+			"Pambi was here lol"
 	  ],
 	];
 
