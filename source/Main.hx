@@ -94,6 +94,12 @@ class Main extends Sprite
 			[FlxColor.fromRGB(206, 106, 169)],
 			"hating simulator ft. moawling"
 		],
+		[
+			['glow'],
+			['dab'],
+			[FlxColor.fromRGB(206, 106, 169)],
+			"testing!!!"
+	  ],
 	];
 
 	// most of these variables are just from the base game!
