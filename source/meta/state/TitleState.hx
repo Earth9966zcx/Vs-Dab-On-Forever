@@ -291,6 +291,7 @@ class TitleState extends MusicBeatState
 		{
 			case 1:
 				createCoolText(['ninjamuffin', 'phantomArcade', 'kawaisprite', 'evilsker']);
+
 			// credTextShit.visible = true;
 			case 3:
 				addMoreText('present');
@@ -303,37 +304,37 @@ class TitleState extends MusicBeatState
 			// credTextShit.screenCenter();
 			case 5:
 				createCoolText(['In association', 'with']);
-			case 6:
-				addMoreText('newgrounds', -40);
+			case 7:
+				addMoreText('newgrounds');
 				ngSpr.visible = true;
 			// credTextShit.text += '\nNewgrounds';
-			case 7:
+
+			case 8:
 				deleteCoolText();
 				ngSpr.visible = false;
 			// credTextShit.visible = false;
+
 			// credTextShit.text = 'Shoutouts Tom Fulp';
 			// credTextShit.screenCenter();
-			case 8:
+			case 9:
 				createCoolText([curWacky[0]]);
 			// credTextShit.visible = true;
-			case 10:
+			case 11:
 				addMoreText(curWacky[1]);
 			// credTextShit.text += '\nlmao';
-			case 11:
+			case 12:
 				deleteCoolText();
 			// credTextShit.visible = false;
 			// credTextShit.text = "Friday";
 			// credTextShit.screenCenter();
-			case 12:
+			case 13:
 				addMoreText('Dead');
 			// credTextShit.visible = true;
-			case 13:
+			case 14:
 				addMoreText('Mod');
 			// credTextShit.text += '\nNight';
-			case 14:
-				addMoreText('Throwdown'); // credTextShit.text += '\nFunkin';
 			case 15:
-				addMoreText('Vs Dab'); //I SHIDDED AND I FARDED :fart:
+				addMoreText('Throwdown'); // credTextShit.text += '\nFunkin';
 
 			case 16:
 				skipIntro();
