@@ -61,7 +61,6 @@ class TitleState extends MusicBeatState
 
 	var logoBl:FlxSprite;
 	var gfDance:FlxSprite;
-	var danceLeft:Bool = false;
 	var titleText:FlxSprite;
 
 	function startIntro()
@@ -73,30 +72,41 @@ class TitleState extends MusicBeatState
 			Discord.changePresence('TITLE SCREEN', 'Main Menu');
 			#end
 
+			var diamond:FlxGraphic = FlxGraphic.fromClass(GraphicTransTileDiamond);
+			diamond.persist = true;
+			diamond.destroyOnNoUse = false;
+
+			FlxTransitionableState.defaultTransIn = new TransitionData(FADE, FlxColor.BLACK, 0.32, new FlxPoint(0, -1),
+				{asset: diamond, width: 32, height: 32}, new FlxRect(-200, -200, FlxG.width * 1.4, FlxG.height * 1.4));
+			FlxTransitionableState.defaultTransOut = new TransitionData(FADE, FlxColor.BLACK, 0.32, new FlxPoint(0, 1),
+				{asset: diamond, width: 32, height: 32}, new FlxRect(-200, -200, FlxG.width * 1.4, FlxG.height * 1.4));
+
+			transIn = FlxTransitionableState.defaultTransIn;
+			transOut = FlxTransitionableState.defaultTransOut;
+
 			ForeverTools.resetMenuMusic(true);
 		}
 
 		persistentUpdate = true;
 
-		var bg:FlxSprite = new FlxSprite().makeGraphic(FlxG.width, FlxG.height, FlxColor.BLACK);
-		// bg.antialiasing = true;
-		// bg.setGraphicSize(Std.int(bg.width * 0.6));
-		// bg.updateHitbox();
+		var bg:FlxSprite = new FlxSprite(-85);
+		bg.loadGraphic(Paths.image('menus/base/titleBG'));
+		bg.antialiasing = true;
+		bg.setGraphicSize(Std.int(bg.width * 0.6));
+		bg.updateHitbox();
 		add(bg);
 
-		logoBl = new FlxSprite(-150, -100);
+		logoBl = new FlxSprite(-100, -250);
 		logoBl.frames = Paths.getSparrowAtlas('menus/base/title/logoBumpin');
 		logoBl.antialiasing = true;
 		logoBl.animation.addByPrefix('bump', 'logo bumpin', 24);
 		logoBl.animation.play('bump');
 		logoBl.updateHitbox();
-		// logoBl.screenCenter();
-		// logoBl.color = FlxColor.BLACK;
 
-		gfDance = new FlxSprite(FlxG.width * 0.4, FlxG.height * 0.07);
+		gfDance = new FlxSprite(650, 100);
 		gfDance.frames = Paths.getSparrowAtlas('menus/base/title/gfDanceTitle');
-		gfDance.animation.addByIndices('danceLeft', 'gfDance', [30, 0, 1, 2, 3, 4, 5, 6, 7, 8, 9, 10, 11, 12, 13, 14], "", 24, false);
-		gfDance.animation.addByIndices('danceRight', 'gfDance', [15, 16, 17, 18, 19, 20, 21, 22, 23, 24, 25, 26, 27, 28, 29], "", 24, false);
+		gfDance.animation.addByPrefix('idle', "gfDance", 24);
+		gfDance.animation.addByPrefix('press', "vpose", 24);
 		gfDance.antialiasing = true;
 		add(gfDance);
 		add(logoBl);
@@ -198,6 +208,7 @@ class TitleState extends MusicBeatState
 		if (pressedEnter && !transitioning && skippedIntro)
 		{
 			titleText.animation.play('press');
+			gfDance.animation.play('press');
 
 			FlxG.camera.flash(FlxColor.WHITE, 1);
 			FlxG.sound.play(Paths.sound('confirmMenu'), 0.7);
@@ -272,12 +283,7 @@ class TitleState extends MusicBeatState
 		super.beatHit();
 
 		logoBl.animation.play('bump');
-		danceLeft = !danceLeft;
-
-		if (danceLeft)
-			gfDance.animation.play('danceRight');
-		else
-			gfDance.animation.play('danceLeft');
+		gfDance.animation.play('idle');
 
 		FlxG.log.add(curBeat);
 
@@ -285,7 +291,6 @@ class TitleState extends MusicBeatState
 		{
 			case 1:
 				createCoolText(['ninjamuffin', 'phantomArcade', 'kawaisprite', 'evilsker']);
-
 			// credTextShit.visible = true;
 			case 3:
 				addMoreText('present');
@@ -298,37 +303,37 @@ class TitleState extends MusicBeatState
 			// credTextShit.screenCenter();
 			case 5:
 				createCoolText(['In association', 'with']);
-			case 7:
-				addMoreText('newgrounds');
+			case 6:
+				addMoreText('newgrounds', -40);
 				ngSpr.visible = true;
 			// credTextShit.text += '\nNewgrounds';
-
-			case 8:
+			case 7:
 				deleteCoolText();
 				ngSpr.visible = false;
 			// credTextShit.visible = false;
-
 			// credTextShit.text = 'Shoutouts Tom Fulp';
 			// credTextShit.screenCenter();
-			case 9:
+			case 8:
 				createCoolText([curWacky[0]]);
 			// credTextShit.visible = true;
-			case 11:
+			case 10:
 				addMoreText(curWacky[1]);
 			// credTextShit.text += '\nlmao';
-			case 12:
+			case 11:
 				deleteCoolText();
 			// credTextShit.visible = false;
 			// credTextShit.text = "Friday";
 			// credTextShit.screenCenter();
-			case 13:
-				addMoreText('Friday');
+			case 12:
+				addMoreText('Dead');
 			// credTextShit.visible = true;
-			case 14:
-				addMoreText('Night');
+			case 13:
+				addMoreText('Mod');
 			// credTextShit.text += '\nNight';
+			case 14:
+				addMoreText('Throwdown'); // credTextShit.text += '\nFunkin';
 			case 15:
-				addMoreText('Funkin'); // credTextShit.text += '\nFunkin';
+				addMoreText('Vs Dab'); //I SHIDDED AND I FARDED :fart:
 
 			case 16:
 				skipIntro();
