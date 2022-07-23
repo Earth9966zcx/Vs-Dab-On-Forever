@@ -6274,10 +6274,10 @@
 		"gfVersion": "gf",
 		"events": [],
 		"player3": null,
-		"song": "glow",
+		"song": "Glow",
 		"validScore": true,
 		"needsVoices": true,
-		"stage": "stage",
+		"stage": "treepog",
 		"bpm": 190,
 		"speed": 3.2
 	}
