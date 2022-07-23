@@ -78,6 +78,8 @@ class Stage extends FlxTypedGroup<FlxBasic>
 					curStage = 'school';
 				case 'thorns':
 					curStage = 'schoolEvil';
+				case 'glow':
+				  curStage = 'treepog';
 				default:
 					curStage = 'stage';
 			}
@@ -335,6 +337,30 @@ class Stage extends FlxTypedGroup<FlxBasic>
 				bg.scrollFactor.set(0.8, 0.9);
 				bg.scale.set(6, 6);
 				add(bg);
+
+			case 'treepog';
+				PlayState.defaultCamZoom = 0.9;
+				curStage = 'treepog';
+				var treesky:FNFSprite = new FNFSprite(-600, -300).loadGraphic(Paths.image('backgrounds/' + curStage + '/sky'));
+				treesky.antialiasing = true;
+				treesky.scrollFactor.set(0.6, 0.6);
+				treesky.scale.set(1, 1);
+				treesky.updateHitbox();
+				add(treesky);
+
+				var treestars:FNFSprite = new FNFSprite(-650, 600).loadGraphic(Paths.image('backgrounds/' + curStage + '/stars'));
+				treestars.antialiasing = true;
+				treestars.scrollFactor.set(0.1, 0.1);
+				treestars.scale.set(1, 1);
+				treestars.updateHitbox();
+				add(treestars);
+
+				var treeground:FNFSprite = new FNFSprite(-650, 600).loadGraphic(Paths.image('backgrounds/' + curStage + '/thebigboi'));
+				treeground.antialiasing = true;
+				treeground.scrollFactor.set(0.9, 0.9);
+				treeground.scale.set(1, 1);
+				treeground.updateHitbox();
+				add(treeground);
 
 			default:
 				PlayState.defaultCamZoom = 0.9;
