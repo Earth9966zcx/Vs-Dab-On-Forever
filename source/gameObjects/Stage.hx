@@ -472,6 +472,16 @@ class Stage extends FlxTypedGroup<FlxBasic>
 				boyfriend.y += 220;
 				gf.x += 180;
 				gf.y += 300;
+			case 'tree':
+				dad.x += 100;
+				dad.y += 100;
+				
+				boyfriend.x += 770;
+				boyfriend.y += 100;
+				
+				gf.x += 400;
+				gf.y += 130;
+				gf.visible = false;
 		}
 	}
 
